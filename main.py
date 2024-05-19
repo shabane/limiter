@@ -33,7 +33,7 @@ def get_network_usage():
             print(f"  Bytes Received: {io.bytes_recv / (1024 * 1024):.2f} MB")
             print(f"Total: {(io.bytes_sent / (1024 * 1024))+(io.bytes_recv / (1024 * 1024))}")
             snt_rcv += (io.bytes_sent / (1024 * 1024))+(io.bytes_recv / (1024 * 1024))
-        print(snt_rcv)
+        print(f'Sum On All Interfaces: {snt_rcv}')
     return snt_rcv
 
 
