@@ -1,6 +1,18 @@
+#!/usr/bin/env python3
 import psutil
 import time
 import requests
+import argparse
+
+
+parser = argparse.ArgumentParser(description='Get notify when your server rich a network data transfer limit.')
+parser.add_argument('--limit', type=int, help='Threshold Number Of Limit')
+parser.add_argument('--chatid', type=str, help='Telegram User ChatId Or Channel @Username/ID')
+parser.add_argument('--message', type=str, help='The Message As Notify[Optional]', default='You Reach Your Limit')
+parser.add_argument('--token', type=str, help='Telegram Bot Token')
+parser.add_argument('--repeat-msg', type=int, help='Repeat Message Time[Miniut]', default=1)
+args = parser.parse_args()
+
 
 def get_network_usage():
     snt_rcv = 0
@@ -25,14 +37,9 @@ def get_network_usage():
     return snt_rcv
 
 
-limit = int(input("Enter a limit: "))
-telegram_token = input("Enter Telegram Bot Token: ")
-chatid = input("Enter Telegram ChatId: ")
-txt = "You Reach your limit"
-
 while True:
     usage = get_network_usage()
-    if usage >= limit:
-        requests.get(f"https://api.telegram.org/bot{telegram_token}/sendMessage?chat_id={chatid}&text={txt}")
+    if usage >= args.limit:
+        requests.get(f"https://api.telegram.org/bot{args.token}/sendMessage?chat_id={args.chatid}&text={args.message}")
+        time.sleep(args.repeat_msg)
     time.sleep(1)
-
