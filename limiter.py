@@ -6,7 +6,7 @@ import argparse
 
 
 parser = argparse.ArgumentParser(description='Get notify when your server rich a network data transfer limit.')
-parser.add_argument('--limit', type=int, help='Threshold Number Of Limit')
+parser.add_argument('--limit', type=int, help='Threshold Number Of Limit[MB]')
 parser.add_argument('--chatid', type=str, help='Telegram User ChatId Or Channel @Username/ID')
 parser.add_argument('--message', type=str, help='The Message As Notify[Optional]', default='You Reach Your Limit')
 parser.add_argument('--token', type=str, help='Telegram Bot Token')
