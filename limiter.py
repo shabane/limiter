@@ -11,6 +11,7 @@ parser.add_argument('--chatid', type=str, help='Telegram User ChatId Or Channel 
 parser.add_argument('--message', type=str, help='The Message As Notify[Optional]', default='You Reach Your Limit')
 parser.add_argument('--token', type=str, help='Telegram Bot Token')
 parser.add_argument('--repeat-msg', type=int, help='Repeat Message Time[Miniut]', default=1)
+parser.add_argument('--send-startup-message', type=bool, action='store_true', help='Send A Message That Indicate The Script Is Running', default=False)
 args = parser.parse_args()
 
 
@@ -36,6 +37,9 @@ def get_network_usage():
         print(f'Sum On All Interfaces: {snt_rcv}')
     return snt_rcv
 
+
+if args.send_startup_message:
+    requests.get(f"https://api.telegram.org/bot{args.token}/sendMessage?chat_id={args.chatid}&text=Limiter Started...")
 
 while True:
     usage = get_network_usage()
