@@ -11,6 +11,7 @@ this script will count and include **all your network** interfaces.
     --message MESSAGE     The Message As Notify[Optional]
     --token TOKEN         Telegram Bot Token
     --repeat-msg REPEAT_MSG Repeat Message Time[Miniut
+    --send-startup-message  Send A Message That Indicate The Script Is Running
 
 - Example
 ```bash
